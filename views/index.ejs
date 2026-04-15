@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobSeeker</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+  <% if(success.length> 0){ %>
+       <script>
+            alert("<%= success %>");
+        </script>
+  <% } %>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="logo">
+      Job<span>Seeker</span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#">Jobs</a>
+      <a href="#">Browse</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="/admin-login"><button id="adminLogin"><i class="fa-solid fa-right-to-bracket"></i>  Admin-Login</button></a>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="profile-circle">A</div>
+    </div>
+  </header>
+
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="badge">Where You Will Be Hired</div>
+
+    <h1 class="title">
+      Find Your Dream Job <br />
+      <span class="green-text">Your Career Starts Here !</span>
+    </h1>
+
+    <p class="subtitle">
+      Find your dream job easily with our job search platform.
+      Explore top companies and apply quickly.
+    </p>
+
+    <!--  GET STARTED BUTTON   -->
+    <div class="get-started-box">
+      <button class="get-started-btn" id="getStartedBtn">
+        Get Started
+      </button>
+    </div>
+
+    <!-- Categories -->
+
+    <div class="categories-marquee">
+      <div class="marquee-track">
+
+        <!-- Set 1 -->
+        <span class="cat">Frontend Developer</span>
+        <span class="cat">Backend Developer</span>
+        <span class="cat">Data Engineer</span>
+        <span class="cat">UI/UX Designer</span>
+        <span class="cat">Full Stack Developer</span>
+        <span class="cat">Data Analyst</span>
+        <span class="cat">Cloud Engineer</span>
+
+        <!-- Set 2 (Duplicate for infinite effect) -->
+        <span class="cat">Frontend Developer</span>
+        <span class="cat">Backend Developer</span>
+        <span class="cat">Data Engineer</span>
+        <span class="cat">UI/UX Designer</span>
+        <span class="cat">Full Stack Developer</span>
+        <span class="cat">Data Analyst</span>
+        <span class="cat">Cloud Engineer</span>
+
+      </div>
+    </div>
+
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer-top">
+
+        <div class="footer-col">
+          <h3 class="footer-logo">Job<span>Seeker</span></h3>
+          <p>
+            JobSeeker helps you find the best jobs easily. Search, apply and grow
+            your career with top companies.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#">Home</a>
+          <a href="#">Jobs</a>
+          <a href="#">Browse</a>
+
+        </div>
+
+        <!-- <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Resume Tips</a>
+          <a href="#">Interview Prep</a>
+          <a href="#">Support</a>
+        </div> -->
+
+        <div class="footer-col">
+          <h4>Connect With us</h4>
+          <a href="#">Telegram</a>
+          <a href="#">Facebook</a>
+          <a href="#">LinkedIn</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 JobSeeker</p>
+      </div>
+    </footer>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal" id="loginModal" >
+      <div class="login-card">
+
+        <div class="login-top">
+          <h2>Welcome !</h2>
+          <button class="close-btn" id="closeModalBtn">✕</button>
+        </div>
+
+        <p class="login-subtitle">Sign in to continue your job search.</p>
+
+        <!-- login form -->
+
+        <form id="loginForm" action="/login" method="post">
+          <label>Email <i class="fa-solid fa-envelope"></i></label>
+          <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required />
+
+          <label>Password <i class="fa-solid fa-lock"></i></label>
+          <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required />
+
+
+          <!-- error msg -->
+          <% if(error.length> 0){ %>
+            <script>
+              alert("<%=error%>")
+            </script>
+          <% } %>
+
+          <button type="submit" class="signin-btn">Sign In</button>
+        </form>
+
+
+
+        <p class="small-text">
+          Don't have an account?
+          <a href="/signup" class="signup">signup</a>
+        </p>
+      </div>
+    </div>
+
+
+    <!-- JS Link -->
+    <script src="/javascripts/script.js"></script>
+
+</body>
+
+</html>

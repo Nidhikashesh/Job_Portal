@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Job Post</title>
+    <link rel="stylesheet" href="/stylesheets/admin_post.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2><i class="fas fa-briefcase"></i> Create Job Post</h2>
+
+    <form action="/posts" method="POST" enctype="multipart/form-data">
+
+        <!-- Company Name -->
+        <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" name="companyName" required>
+        </div>
+
+        <!-- Job Role -->
+        <div class="form-group">
+            <label>Job Role</label>
+            <input type="text" name="jobRole" required>
+        </div>
+
+        <!-- Company Logo -->
+        <div class="form-group">
+            <label>Company Logo</label>
+            <input type="file" name="companyLogo" accept="image/*">
+        </div>
+
+        <!-- Sector -->
+        <div class="form-group">
+            <label>Sector</label>
+            <select name="sector">
+                <option value="Private">Private</option>
+                <option value="Government">Government</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <!-- Job Type -->
+        <div class="form-group">
+            <label>Job Type</label>
+            <select name="jobType">
+                <option>Full-Time</option>
+                <option>Part-Time</option>
+                <option>Internship</option>
+                <option>Apprenticeship</option>
+            </select>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="form-group">
+            <label>Qualifications</label>
+            <input type="text" name="qualification" placeholder="10th, 12th, Diploma, Graduation..." required>
+        </div>
+
+        <!-- Experience -->
+        <div class="form-group">
+            <label>Experience</label>
+            <input type="text" name="experience" placeholder="0-2 years / Fresher">
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" name="location" required>
+        </div>
+
+        <!-- Dates -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Starting Date</label>
+                <input type="date" name="startDate">
+            </div>
+
+            <div class="form-group">
+                <label>Last Date</label>
+                <input type="date" name="lastDate">
+            </div>
+        </div>
+
+        <!-- Apply Link -->
+        <div class="form-group">
+            <label>Apply Link (URL)</label>
+            <input type="url" name="applyLink" required>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="4"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Post Job
+        </button>
+
+    </form>
+</div>
+
+</body>
+</html>

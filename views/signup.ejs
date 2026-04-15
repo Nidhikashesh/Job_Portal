@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up - JobSeeker</title>
+  <link rel="stylesheet" href="/stylesheets/signup.css" />
+  
+</head>
+
+<body>
+  <div class="container">
+    <h2>Create Account</h2>
+
+    <form id="signupForm" action="/signup" method="post" enctype="multipart/form-data">
+      <input type="text" name="firstName" placeholder="First Name" required />
+
+      <input type="text" name="lastName" placeholder="Last Name" required />
+
+      <input type="email" name="email" id="email" placeholder="Email ID" pattern="^[^ ]+@[^ ]+\.[a-z]{2,3}$" required />
+
+      <input type="password" name="password" placeholder="password" required />
+
+      <label>Upload Image</label>
+      <input type="file" name="image" accept="image/*" required />
+
+       <% if(error.length> 0){ %>
+            <div class="alert error">
+              
+              <%= error %>
+            </div>
+        <% } %>
+
+     
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="login-link">
+      Already have an account?
+      <a href="/">Login</a>
+    </p>
+
+    <script src="/javascripts/signup.js"></script>
+  </div>
+</body>
+
+</html>

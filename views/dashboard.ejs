@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="stylesheets/dashboard.css">
+      <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+  
+  <!-- Left Text -->
+  <div class="logo">
+    Hi <span><%= user.firstName %></span> ! Find Your Dream Job
+  </div>
+
+  <!-- Right Side -->
+  <div class="nav-right" id="navMenu">
+    <a href="/logout"><button class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
+    
+    <div class="profile">
+      <img src="../uploads/<%=user.image %>" alt="profile">
+    </div>
+  </div>
+
+  <!-- Hamburger -->
+  <div class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+</nav>
+
+<!-- SEARCH -->
+<section class="search-section">
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search jobs...">
+        <button onclick="openModal()" class="filter-main-btn">
+            <i class="fa-solid fa-sliders"></i> Filters
+        </button>
+    </div>
+</section>
+<!-- ================= FILTER MODAL ================= -->
+<div class="modal" id="filterModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Filter Jobs</h3>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+        </div>
+
+        <div class="modal-body">
+            <label>Work Mode</label>
+            <select id="workMode">
+                <option value="Any">Any</option>
+                <option value="Remote">Remote</option>
+                <option value="Office">Office</option>
+            </select>
+
+            <label>Experience</label>
+            <select id="experience">
+                <option value="Any">Any</option>
+                <option value="Fresher">Fresher</option>
+                <option value="0-2">0-2</option>
+            </select>
+
+            <label>Location</label>
+            <input type="text" id="location" placeholder="Enter city">
+
+            <label>Job Type</label>
+            <select id="jobType">
+                <option value="Any">Any</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Internship">Internship</option>
+            </select>
+        </div>
+
+        <div class="modal-footer">
+            <button class="reset-btn" onclick="resetFilters()">Reset</button>
+            <button class="apply-btn" onclick="applyFilters()">Apply</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- JOB LIST -->
+<section class="job-container" id="jobContainer">
+
+
+    <%for(post of Posts){%>
+                    <div class="job-card" data-title="Software Engineer">
+
+                        <div class="job-logo">
+                            <img src="../uploads/<%=post.companyLogo%>" class="profile-img" >
+                            <h3>
+                                <%=post.jobRole%>
+                            </h3>
+                        </div>
+                        <div class="job-info">
+                            <h4 class="company">
+                                <%=post.companyName%> <br>
+
+                            </h4>
+                            <p class="qualification"><i class="fa-solid fa-graduation-cap"></i> Qualifications -
+                                <%=post.qualification%>
+                            </p>
+                            <p><i class="fa-solid fa-location-dot"></i> Location -<%=post.location%>
+                            </p>
+                            <p> <i class="fa-solid fa-briefcase"></i> Experience - <%=post.experience%>
+                            </p>
+                            <p class="job-type"><i class="fa-solid fa-user-tie"></i> Job-type - <%=post.jobType%>
+                            </p>
+                            
+                        </div>
+
+                        <a href="<%=post.applyLink%>"><button class="btn">Apply Now</button></a>
+                        <a href="/posts/<%=post._id%>"><button class="btn">View</button></a>
+                    
+                        
+                    </div>
+                    <% } %>
+
+    <!-- ============== -->
+
+</section>
+
+<!-- PAGINATION -->
+<div class="pagination" id="pagination"></div>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    © 2026 GreenJobs | All Rights Reserved
+</footer>
+
+
+
+<script src="/javascripts/dashboard.js"></script>
+</body>
+</html>

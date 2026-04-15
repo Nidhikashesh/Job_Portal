@@ -1,0 +1,255 @@
+body{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Segoe UI;
+    background:#f8fcf8;
+}
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+/* Left text */
+.logo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.logo span {
+  color: green;
+  font-weight: bold;
+}
+
+/* Right section */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Logout button */
+.logout-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: darkgreen;
+}
+
+/* Profile image */
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid green;
+  overflow: hidden;
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ==========SEARCH BAR======== */
+
+.search-section{
+    padding:20px;
+}
+
+.search-box{
+    display:flex;
+    background:#fff;
+    padding:10px 15px;
+    border-radius:30px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    flex:1;
+    margin-left:10px;
+}
+
+.filter-main-btn{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.job-container{
+    font-family:Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding:0 30px 30px;
+}
+
+.job-card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.profile-img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid #2e7d32;
+}
+
+.job-logo{
+    display: flex;
+}
+
+.job-logo h3{
+    text-transform: capitalize;
+    padding-left: 0.8rem;
+}
+.job-info{
+    line-height: 16px;
+    font-size: 16px;
+}
+.company{
+    text-transform: capitalize;
+    margin: 0;
+    color:#2e7d32;
+}
+
+.btn{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.pagination{
+    text-align:center;
+    padding:20px;
+}
+
+.pagination button{
+    margin:5px;
+    padding:8px 12px;
+    border:none;
+    background:#e8f5e9;
+    cursor:pointer;
+}
+
+.pagination button.active{
+    background:#2e7d32;
+    color:#fff;
+}
+
+.footer{
+    background:#fff;
+    text-align:center;
+    padding:15px;
+    border-top:1px solid #eee;
+}
+
+
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    top:0;
+    left:0;
+    justify-content:center;
+    align-items:center;
+}
+
+/* #filtermodel{
+    z-index:auto;
+} */
+
+.modal-content{
+    background:#fff;
+    padding:20px;
+    width:350px;
+    border-radius:12px;
+}
+
+.modal-body{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.modal-body input,
+.modal-body select{
+    padding:8px;
+}
+
+.modal-footer{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.reset-btn{
+    background:#eee;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+}
+
+/*  Responsive Design */
+
+@media (max-width: 700px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #fff;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    display: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .nav-right.active {
+    display: flex;
+  }
+
+  .logout-btn {
+    width: 80%;
+    text-align: center;
+  }
+}

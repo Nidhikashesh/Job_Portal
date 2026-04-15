@@ -1,0 +1,59 @@
+/* Profile image */
+
+.profile-img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid #2e7d32;
+    overflow: hidden;
+}
+
+/* =======JOB POSTS===== */
+.job-container{
+    font-family:Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding:0 30px 30px;
+}
+
+.job-card{
+    position:relative;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 3px 2px 4px rgba(0,0,0,0.08);
+}
+
+.job-logo{
+    display: flex;
+}
+.job-logo h3{
+    text-transform: capitalize;
+    padding-left: 0.8rem;
+}
+.job-info{
+    line-height: 16px;
+    font-size: 16px;
+}
+.company{
+    text-transform: capitalize;
+    font-size:large;
+    font-weight: 700;
+    margin: 0;
+    color:#2e7d32;
+}
+/* apply/edit-btn */
+.btn{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.btn:hover {
+    background: #1b5e20;
+    transform: scale(0.9);
+}

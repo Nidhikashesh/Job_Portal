@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+
+    <link rel="stylesheet" href="/stylesheets/adminLogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="overlay">
+
+        <div class="modal">
+
+            <div class="close-btn" onclick="window.location='/'">✕</div>
+
+            <h2>Welcome !</h2>
+            <p class="subtitle">Sign in to continue admin access.</p>
+
+            <form action="/login/admin" method="POST">
+
+                <label>Email <i class="fa-solid fa-envelope"></i></label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <label>Password <i class="fa-solid fa-lock"></i></label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+
+                <% if(error.length> 0){ %>
+                    <div class="alert error">
+
+                        <%= error %>
+                    </div>
+                <% } %>
+
+                <button type="submit">Sign In</button>
+
+            </form>
+
+            <p class="bottom-text">
+                Admin access only
+            </p>
+
+        </div>
+
+    </div>
+    <script src="/javascripts/adminLogin.js"></script>
+</body>
+
+</html>
