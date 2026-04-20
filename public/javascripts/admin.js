@@ -14,37 +14,9 @@ function deleteJob(id) {
 const jobsPerPage = 6;
 let currentPage = 1;
 
-const searchInput = document.getElementById("searchInput");
 const jobCards = document.querySelectorAll(".job-card");
 const pagination = document.getElementById("pagination");
-
-searchInput.addEventListener("keyup", function(){
-    currentPage = 1;
-    displayJobs();
-});
-
-/* DISPLAY JOBS */
-function displayJobs(){
-
-    const searchText = searchInput.value.toLowerCase();
-
-    let filteredJobs = Array.from(jobCards).filter(job =>
-        job.dataset.title.toLowerCase().includes(searchText)
-    );
-
-    const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
-
-    jobCards.forEach(job => job.style.display = "none");
-
-    const start = (currentPage - 1) * jobsPerPage;
-    const end = start + jobsPerPage;
-
-    filteredJobs.slice(start, end).forEach(job => {
-        job.style.display = "block";
-    });
-
-    createPagination(totalPages);
-}
+  
 
 /* CREATE PAGINATION BUTTONS */
 function createPagination(totalPages){

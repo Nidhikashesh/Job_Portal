@@ -32,11 +32,17 @@
             <!-- SEARCH -->
             <section class="search-section">
                 <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Search jobs...">
+                    <!-- <div class="search"> -->
+                    <form action="/admin" method="get" class="search">
+                        <input type="text" name="search"  placeholder="Search jobs..." value="<%= search || '' %>">
+                        <button type="submit" class="filter-main-btn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                    </form>
+                    <!-- </div> -->
+                    <!-- <div class="filter"> -->
                     <button onclick="openModal()" class="filter-main-btn">
                         <i class="fa-solid fa-sliders"></i> Filters
                     </button>
+                    <!-- </div> -->
                 </div>
             </section>
             <!-- ================= FILTER MODAL ================= -->

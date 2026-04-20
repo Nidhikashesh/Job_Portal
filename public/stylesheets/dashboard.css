@@ -79,11 +79,15 @@ body{
     padding:10px 15px;
     border-radius:30px;
     box-shadow:0 2px 8px rgba(0,0,0,0.05);
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    
+}
+.search{
+    width: 90%;
 }
 
 .search-box input{
+    width: 88%;
     border:none;
     outline:none;
     flex:1;

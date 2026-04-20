@@ -20,7 +20,7 @@
             <textarea name="description" required><%= job.description %></textarea>
 
             <label>Last Date</label>
-            <input type="date" name="lastDate" value="<%= job.lastDate.toISOString().split('T')[0] %>" required>
+            <input type="text" name="lastDate" value="<%= job.lastDate %>" required>
 
             <button type="submit">Update Job</button>
         </form>

@@ -9,8 +9,8 @@ const jobSchema = new mongoose.Schema({
     qualification: String,
     experience: String,
     location: String,
-    startDate: Date,
-    lastDate: Date,
+    startDate: String,
+    lastDate: String,
     description: String,
     applyLink: String
 }, { timestamps: true });

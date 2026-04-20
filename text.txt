@@ -1,0 +1,160 @@
+You need a functional search (frontend + backend) that filters jobs by company name OR job role. The correct approach is:
+
+👉 Input field → query param → backend filter (MongoDB $regex) → render filtered results
+
+
+---
+
+✅ 1. Search Bar (EJS / HTML)
+
+Place this at top of your admin/job listing page:
+
+<form action="/admin" method="GET" class="search-bar">
+    <input 
+        type="text" 
+        name="search" 
+        placeholder="Search by company or job role..."
+        value="<%= search || '' %>"
+    >
+    <button type="submit">Search</button>
+</form>
+
+
+---
+
+✅ 2. CSS (Simple Clean UI)
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 10px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-bar input:focus {
+    border-color: #2e7d32;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    border: none;
+    background: #2e7d32;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+
+---
+
+✅ 3. Backend (IMPORTANT – Main Logic)
+
+Update your /admin route:
+
+router.get("/admin", async (req, res) => {
+    try {
+        const search = req.query.search || "";
+
+        const query = {
+            $or: [
+                { companyName: { $regex: search, $options: "i" } },
+                { jobRole: { $regex: search, $options: "i" } }
+            ]
+        };
+
+        const jobs = await Job.find(query).sort({ createdAt: -1 });
+
+        res.render("admin", { jobs, search });
+
+    } catch (err) {
+        console.log(err);
+        res.send("Error loading jobs");
+    }
+});
+
+
+---
+
+🔍 How It Works
+
+$regex → allows partial matching
+
+$options: "i" → case-insensitive
+
+$or → search in both fields
+
+
+
+---
+
+✅ 4. Example Searches
+
+Input	Result
+
+tcs	Shows all TCS jobs
+developer	Shows all dev roles
+intern	Matches internship roles
+
+
+
+---
+
+🚀 Optional Upgrade (Live Search – No Button)
+
+If you want real-time search (like modern apps):
+
+<input type="text" id="searchInput" placeholder="Search...">
+
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    const value = this.value;
+    window.location.href = "/admin?search=" + value;
+});
+</script>
+
+
+---
+
+⚠️ Important Note
+
+Empty search ("") → shows all jobs ✅
+
+Works with MongoDB efficiently for small/medium apps
+
+
+
+---
+
+🔥 Next Level (Resume Booster)
+
+If you want to make it industry-level, I can help you add:
+
+🔍 Filter by **location / job type**
+
+⚡ Debounced live search (no reload)
+
+📊 Pagination + search
+
+🧠 Full-text search (MongoDB index)
+
+
+
+---
+
+Tell me what you want next 👍
+
+
+
+
+
+
+
+==================================
