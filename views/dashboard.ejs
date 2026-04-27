@@ -40,10 +40,10 @@
  <section class="search-section">
             <div class="search-box">
 
-                <!-- <form action="" method="get" class="search">
-                        <input type="text" value="search" id="searchInput" placeholder="Search jobs..." >
+                 <form action="/dashboard" method="get" class="search">
+                        <input type="text" name="search"  placeholder="Search jobs..." value="<%= search || '' %>">
                         <button type="submit" class="filter-main-btn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-                </form> -->
+                </form>
 
                 <button onclick="openModal()" class="filter-main-btn">
                         <i class="fa-solid fa-sliders"></i> Filters
