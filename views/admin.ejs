@@ -35,56 +35,15 @@
                     <!-- <div class="search"> -->
                     <form action="/admin" method="get" class="search">
                         <input type="text" name="search"  placeholder="Search jobs..." value="<%= search || '' %>">
+
+                        
                         <button type="submit" class="filter-main-btn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
                     </form>
-                    <!-- </div> -->
-                    <!-- <div class="filter"> -->
-                    <button onclick="openModal()" class="filter-main-btn">
-                        <i class="fa-solid fa-sliders"></i> Filters
-                    </button>
-                    <!-- </div> -->
+                
                 </div>
             </section>
-            <!-- ================= FILTER MODAL ================= -->
-            <div class="modal" id="filterModal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>Filter Jobs</h3>
-                        <span class="close-btn" onclick="closeModal()">&times;</span>
-                    </div>
-
-                    <div class="modal-body">
-                        <label>Work Mode</label>
-                        <select id="workMode">
-                            <option value="Any">Any</option>
-                            <option value="Remote">Remote</option>
-                            <option value="Office">Office</option>
-                        </select>
-
-                        <label>Experience</label>
-                        <select id="experience">
-                            <option value="Any">Any</option>
-                            <option value="Fresher">Fresher</option>
-                            <option value="0-2">0-2</option>
-                        </select>
-
-                        <label>Location</label>
-                        <input type="text" id="location" placeholder="Enter city">
-
-                        <label>Job Type</label>
-                        <select id="jobType">
-                            <option value="Any">Any</option>
-                            <option value="Full Time">Full Time</option>
-                            <option value="Internship">Internship</option>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="reset-btn" onclick="resetFilters()">Reset</button>
-                        <button class="apply-btn" onclick="applyFilters()">Apply</button>
-                    </div>
-                </div>
-            </div>
+            
+<!-- Post a job! -->
 
             <div class="top-bar">
                 <h2>Post a Job !</h2>

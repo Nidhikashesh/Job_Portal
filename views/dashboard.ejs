@@ -1,150 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title> Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="stylesheets/dashboard.css">
-      <!-- Font Awesome CDN -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
+    <!-- NAVBAR -->
 
-<nav class="navbar">
-  
-  <!-- Left Text -->
-  <div class="logo">
-    Hi <span><%= user.firstName %></span> ! Find Your Dream Job
-  </div>
+    <nav class="navbar">
 
-  <!-- Right Side -->
-  <div class="nav-right" id="navMenu">
-    <a href="/logout"><button class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
-    
-    <div class="profile">
-      <img src="../uploads/<%=user.image %>" alt="profile">
-    </div>
-  </div>
+        <!-- Left Text -->
+        <div class="logo">
+            Hi <span>
+                <%= user.firstName %>
+            </span> ! Find Your Dream Job
+        </div>
 
-  <!-- Hamburger -->
-  <div class="menu-toggle" id="menuToggle">
-    <i class="fas fa-bars"></i>
-  </div>
+        <!-- Right Side -->
+        <div class="nav-right" id="navMenu">
+            <a href="/logout"><button class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i>
+                    Logout</button></a>
 
-</nav>
-
-<!-- SEARCH -->
- <section class="search-section">
-            <div class="search-box">
-
-                 <form action="/dashboard" method="get" class="search">
-                        <input type="text" name="search"  placeholder="Search jobs..." value="<%= search || '' %>">
-                        <button type="submit" class="filter-main-btn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-                </form>
-
-                <button onclick="openModal()" class="filter-main-btn">
-                        <i class="fa-solid fa-sliders"></i> Filters
-                </button>
+            <div class="profile">
+                <img src="../uploads/<%=user.image %>" alt="profile">
             </div>
+        </div>
+
+        <!-- Hamburger -->
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+    </nav>
+
+    <!-- SEARCH -->
+    <section class="search-section">
+        <div class="search-box">
+
+            <form action="/dashboard" method="get" class="search">
+                <input type="text" name="search" placeholder="Search jobs..." value="<%= search || '' %>">
+                <!-- Preserve filters -->
+                <input type="hidden" name="sector" value="<%= filters?.sector || '' %>">
+                <input type="hidden" name="jobType" value="<%= filters?.jobType || '' %>">
+                <input type="hidden" name="qualification" value="<%= filters?.qualification || '' %>">
+                <input type="hidden" name="experience" value="<%= filters?.experience || '' %>">
+
+                <button type="submit" class="filter-main-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>Search
+                </button>
+            </form>
+
+            <button onclick="openFilterModal()" class="filter-main-btn">
+                <i class="fa-solid fa-sliders"></i> Filters
+            </button>
+            <button type="button" class="filter-main-btn" onclick="resetFilters()">
+                 Reset
+            </button>
+        </div>
     </section>
-<!-- ================= FILTER MODAL ================= -->
-<div class="modal" id="filterModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Filter Jobs</h3>
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-        </div>
+    <!-- ================= FILTER MODAL ================= -->
 
-        <div class="modal-body">
-            <label>Work Mode</label>
-            <select id="workMode">
-                <option value="Any">Any</option>
-                <option value="Remote">Remote</option>
-                <option value="Office">Office</option>
-            </select>
 
-            <label>Experience</label>
-            <select id="experience">
-                <option value="Any">Any</option>
-                <option value="Fresher">Fresher</option>
-                <option value="0-2">0-2</option>
-            </select>
+    <!-- Filter Modal -->
+    <div id="filterModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Filter Jobs</h3>
+                <span class="close-btn" onclick="closeFilterModal()">&times;</span>
+            </div>
 
-            <label>Location</label>
-            <input type="text" id="location" placeholder="Enter city">
+            <form action="/dashboard" method="GET">
 
-            <label>Job Type</label>
-            <select id="jobType">
-                <option value="Any">Any</option>
-                <option value="Full Time">Full Time</option>
-                <option value="Internship">Internship</option>
-            </select>
-        </div>
+                <!-- preserve search -->
+                <input type="hidden" name="search" value="<%= search || '' %>">
 
-        <div class="modal-footer">
-            <button class="reset-btn" onclick="resetFilters()">Reset</button>
-            <button class="apply-btn" onclick="applyFilters()">Apply</button>
+                <!-- Sector -->
+                <div class="filter-group">
+                    <label>Sector</label>
+                    <select name="sector">
+                        <option value="">All</option>
+                        <option value="Private" <%=filters?.sector==="Private" ? "selected" : "" %>>Private</option>
+                        <option value="Government" <%=filters?.sector==="Government" ? "selected" : "" %>>Government</option>
+                        <option value="Other" <%=filters?.sector==="Other" ? "selected" : "" %>>Other</option>
+                    </select>
+                </div>
+
+                <!-- Job Type -->
+                <div class="filter-group">
+                    <label>Job Type</label>
+                    <select name="jobType">
+                        <option value="">All</option>
+                        <option value="Internship" <%=filters?.jobType==="Internship" ? "selected" : "" %>>Internship</option>
+                        <option value="Apprenticeship" <%=filters?.jobType==="Apprenticeship" ? "selected" : "" %>>Apprenticeship</option>
+                        <option value="Full-Time" <%=filters?.jobType==="Full-Time" ? "selected" : "" %>>Full-Time</option>
+                        <option value="Part-Time" <%=filters?.jobType==="Part-Time" ? "selected" : "" %>>Part-Time</option>
+                    </select>
+                </div>
+
+                <!-- Qualification -->
+                <div class="filter-group">
+                    <label>Qualification</label>
+                    <select name="qualification">
+                        <option value="">All</option>
+                        <option value="10th" <%=filters?.qualification==="10th" ? "selected" : "" %>>10th</option>
+                        <option value="12th" <%=filters?.qualification==="12th" ? "selected" : "" %>>12th</option>
+                        <option value="Diploma" <%=filters?.qualification==="Diploma" ? "selected" : "" %>>Diploma</option>
+                        <option value="Graduation" <%=filters?.qualification==="Graduation" ? "selected" : "" %>>Graduation</option>
+                    </select>
+                </div>
+
+                <!-- Experience -->
+                <div class="filter-group">
+                    <label>Experience</label>
+                    <select name="experience">
+                        <option value="">All</option>
+                        <option value="Fresher" <%=filters?.experience==="Fresher" ? "selected" : "" %>>Fresher</option>
+                        <option value="1-2 Years" <%=filters?.experience==="1-2 Years" ? "selected" : "" %>>1-2 Years</option>
+                        <option value="3-5 Years" <%=filters?.experience==="3-5 Years" ? "selected" : "" %>>3-5 Years</option>
+                        <option value="5+ Years" <%=filters?.experience==="5+ Years" ? "selected" : "" %>>5+ Years</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="apply-filter-btn">
+                    Apply Filters
+                </button>
+            </form>
         </div>
     </div>
-</div>
 
 
-<!-- JOB LIST -->
-<section class="job-container" id="jobContainer">
+    <!-- JOB LIST -->
+    <section class="job-container" id="jobContainer">
 
 
-    <%for(post of Posts){%>
-                    <div class="job-card" data-title="Software Engineer">
+        <%for(post of Posts){%>
+            <div class="job-card" data-title="Software Engineer">
 
-                        <div class="job-logo">
-                            <img src="../uploads/<%=post.companyLogo%>" class="profile-img" >
-                            <h3>
-                                <%=post.jobRole%>
-                            </h3>
-                        </div>
-                        <div class="job-info">
-                            <h4 class="company">
-                                <%=post.companyName%> <br>
+                <div class="job-logo">
+                    <img src="../uploads/<%=post.companyLogo%>"  class="profile-img">
+                    <h3>
+                        <%=post.jobRole%>
+                    </h3>
+                </div>
+                <div class="job-info">
+                    <h4 class="company">
+                        <%=post.companyName%> <br>
 
-                            </h4>
-                            <p class="qualification"><i class="fa-solid fa-graduation-cap"></i> Qualifications -
-                                <%=post.qualification%>
-                            </p>
-                            <p><i class="fa-solid fa-location-dot"></i> Location -<%=post.location%>
-                            </p>
-                            <p> <i class="fa-solid fa-briefcase"></i> Experience - <%=post.experience%>
-                            </p>
-                            <p class="job-type"><i class="fa-solid fa-user-tie"></i> Job-type - <%=post.jobType%>
-                            </p>
-                            
-                        </div>
+                    </h4>
+                    <p class="qualification"><i class="fa-solid fa-graduation-cap"></i> Qualifications -
+                        <%=post.qualification%>
+                    </p>
+                    <p><i class="fa-solid fa-location-dot"></i> Location -<%=post.location%>
+                    </p>
+                    <p> <i class="fa-solid fa-briefcase"></i> Experience - <%=post.experience%>
+                    </p>
+                    <p class="job-type"><i class="fa-solid fa-user-tie"></i> Job-type - <%=post.jobType%>
+                    </p>
 
-                        <a href="<%=post.applyLink%>"><button class="btn">Apply Now</button></a>
-                        <a href="/posts/<%=post._id%>"><button class="btn">View</button></a>
-                    
-                        
-                    </div>
-                    <% } %>
+                </div>
 
-    <!-- ============== -->
-
-</section>
-
-<!-- PAGINATION -->
-<div class="pagination" id="pagination"></div>
+                <a href="<%=post.applyLink%>" target="_blank"><button class="btn">Apply Now</button></a>
+                <a href="/posts/<%=post._id%>"><button class="btn">View</button></a>
 
 
+            </div>
+            <% } %>
 
-<!-- FOOTER -->
-<footer class="footer">
-    © 2026 GreenJobs | All Rights Reserved
-</footer>
+                <!-- ============== -->
 
+    </section>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2026 GreenJobs | All Rights Reserved
+    </footer>
 
-<script src="/javascripts/dashboard.js"></script>
+    <script src="/javascripts/dashboard.js"></script>
 </body>
+
 </html>
